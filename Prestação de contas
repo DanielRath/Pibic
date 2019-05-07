@@ -1,0 +1,23 @@
+FOCO: produtividade => música adaptativa
+
+Conclusões:
+há padrões na matemática, assim como na música
+tem-se visto a dificuldade devido às distrações
+em python consegue-se criar e reproduzir midi em tempo real (mido: biblioteca com essa funcionalidade) https://mido.readthedocs.io/en/latest/
+criar reprodutor de músicas inteligente (proposta)
+
+Dúvida: Variáveis fisiológicas que se relacionam com o foco.
+“flow”: estado ótimo da aprendizagem. EDX.org - curso: the science of thinking (capítulo: “flow”). The science of happiness
+
+____________________________________________________________________________
+
+Quando tem-se um problema grande, devo simplificá-lo!!
+reproduzir áudio em C -> reproduzir midi em C -> reproduzir midi em pynthon (som biblioteca comum) -> reproduzir midi no ableton
+
+Atenção! Antes de baixar um novo programa, sempre executar o comando:
+
+git clone https://github.com/danielrath/pibic
+git pull (para sincronizar)
+git add *
+git commit -m “MSG”
+git push
