@@ -15,6 +15,7 @@ Quando tem-se um problema grande, devo simplificá-lo!!
 reproduzir áudio em C -> reproduzir midi em C -> reproduzir midi em pynthon (som biblioteca comum) -> reproduzir midi no ableton
 
 Atenção! Antes de baixar um novo programa, sempre executar o comando:
+sudo apt-get update
 
 git clone https://github.com/danielrath/pibic
 git pull (para sincronizar)
