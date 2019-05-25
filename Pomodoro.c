@@ -1,6 +1,6 @@
 
-#define TIMER1 10*1000
-#define TIMER2 5*1000
+#define TIMER1 15*1000
+#define TIMER2 15*1000
 
 #define STUDY 1
 #define REST 2
@@ -14,12 +14,6 @@
 #include <unistd.h>
 
 
-
-struct thread
-{
-	pthread_t id;
-	bool started;
-};
 
 char stop = ' ';
 
@@ -36,16 +30,12 @@ void *GetInput(void *a){
 
 void main(){
 	clock_t tend, tstart = clock();
-	int ctrl=STUDY, startFlag=1;
+	int ctrl=STUDY;
+	//Start flags
+	boolean startFlag=TRUE, startOnceFlag=FALSE;
 
-	thread tInput, tAlarm, tStudyMusic, tRestMusic;
-	tAlarm.started=FALSE;
-	tStudyMusic.started=FALSE;
-	tRestMusic.started=FALSE;
-
-
-	pthread_create(&tInput.id, NULL, &GetInput, NULL);
-	tInput.started=TRUE;
+	pthread_t tInput;
+	pthread_create(&tInput, NULL, &GetInput, NULL);
 
 	while(stop != 'e'){
 
@@ -54,36 +44,48 @@ void main(){
 
 			//Start studies routine
 			case(STUDY):
+
 				//Keep alarm to start studies untill user presses 'p'
-				if(startFlag==0){
+				if(!startFlag){
+					//printf("ALARME DE ESTUDOS\n");
 
-					//Create alarm thread, if it doesn't exists yet
-					if(stop != 'p'){
-						if (!tAlarm.started){
-							//Create one alarm thread
+					//Start alarm sound only once
+					if(!startOnceFlag){
+							/***************COLOCAR SOM DE ALARME AQUI (SE TIVER)************/
+						printf("Mandei tocar alarme 1x de estudos\n");
 
-							tAlarm.started = TRUE;
-						}
-
-						
+						startOnceFlag = TRUE;
 					}
-					else{
-						//junta o alarme
-						tAlarm.started = FALSE;
 
-						startFlag=1;
+					//Stop the alarm, if requested by user
+					if(stop == 'p'){
 						tend = clock();
 						tstart = clock();
+						startFlag=TRUE;
+						startOnceFlag = FALSE;
 					}
+
 				}
+
 				//Start studies timer
 				else{
+
+					//Start study music only once
+					if(!startOnceFlag){
+							/***************COLOCAR A MUSICA DE ESTUDOS AQUI************/
+
+						printf("Mandei tocar musica de estudos\n");
+						startOnceFlag = TRUE;
+					}
+
+					//Check if time is over
 					if(tend-tstart < TIMER1){
 						tend = clock();
 					}
 					else{
 						ctrl = REST;
-						startFlag=0;
+						startFlag = FALSE;
+						startOnceFlag = FALSE;
 						stop = ' ';
 						printf("Time to rest\nPress 'p' to stop the alarm and start rest timer\n");
 					}
@@ -94,22 +96,49 @@ void main(){
 
 			//Start resting routine
 			case(REST):
+
 				//Keep alarm to start resting untill user presses 'p'
-				if(startFlag==0){
+				if(!startFlag){
+					//printf("ALARME DE DESCANCO\n");
+
+					//Start alarm sound only once
+					if(!startOnceFlag){
+							/***************COLOCAR SOM DE ALARME AQUI (SE TIVER)************/
+						printf("Mandei tocar alarme 1x de descanco\n");
+						startOnceFlag = TRUE;
+					}
+
+					//Stop the alarm, if requested by user
 					if(stop == 'p'){
-						startFlag=1;
 						tend = clock();
 						tstart = clock();
+						startFlag=TRUE;
+						startOnceFlag = FALSE;
 					}
+
 				}
+
 				//Start resting timer
 				else{
-					if(tend-tstart < TIMER2){
+					//printf("DESCANCO\n");
+
+					//Start resting music only once
+					if(!startOnceFlag){
+							/***************COLOCAR A MUSICA DE DESCANCO AQUI************/
+						
+							printf("Mandei tocar a musica de descanco\n");
+
+						startOnceFlag = TRUE;
+					}
+
+					//Check if time is over
+					if(tend-tstart < TIMER1){
 						tend = clock();
 					}
 					else{
 						ctrl = STUDY;
-						startFlag=0;
+						startFlag = FALSE;
+						startOnceFlag = FALSE;
 						stop = ' ';
 						printf("Time to study\nPress 'p' to stop the alarm and start study timer\n");
 					}
@@ -119,27 +148,7 @@ void main(){
 
 
 		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		
 	}
-	printf("acabei\n");
-	pthread_join(tInput.id, NULL);
-	//printf("final\n");
+	//End of pomodoro
+	pthread_join(tInput, NULL);
 }
