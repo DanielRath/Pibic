@@ -1,15 +1,24 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "FileFuncs.h"
 
 //File used in tests. Uncomment it to use the main tests
 //#define TEST_FILE "arquivo/teste.csv"
 
 //Write the 3 values of the sensors in the .csv file
-void WriteSensorsData(int data[], char file[]){
+void WriteSensorsData(char file[], int data[]){
 	FILE *fp;
 
 	//Open file
 	fp = fopen(file, "r+");
+
+	//Check file existance
+	if(fp == NULL){
+		//Create it if it didn't exist
+		fp = fopen(file, "w+");
+		// and fill first line
+		fprintf(fp, "DATA1,DATA2,DATA3");
+	}
+
+	
 	//Write at file end
 	fseek(fp, 0, SEEK_END);
 
@@ -27,7 +36,7 @@ void WriteSensorsData(int data[], char file[]){
 }
 
 //Read a single value from the .csv file
-int GetDataValue(int line, int column, char file[]){
+int GetDataValue(char file[], int line, int column){
 	FILE *fp;
 	int data;
 	char discard;
@@ -67,7 +76,7 @@ int GetDataValue(int line, int column, char file[]){
 	return data;
 }
 
-void GetDataLine(int data[], int line, char file[]){
+void GetDataLine(char file[], int data[], int line){
 	FILE *fp;
 	char discard;
 
