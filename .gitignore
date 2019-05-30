@@ -2,3 +2,7 @@
 Code/DataBase/teste\.csv
 
 Code/AdaptiveMusic/obj/
+
+*.exe
+
+Code/obj/

@@ -1,6 +1,6 @@
 #include "FileFuncs.h"
 
-#define DATAFILE "../DataBase/teste.csv"
+#define DATAFILE "DataBase/teste.csv"
 
 void main(int argc, char const *argv[])
 {
