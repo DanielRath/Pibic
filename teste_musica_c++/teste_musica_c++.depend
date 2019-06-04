@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1559227796 source:c:\users\daniel\documents\github\pibic\teste_musica_c++\main.cpp
+	<windows.h>
+	<mmsystem.h>
+	<iostream>
+
