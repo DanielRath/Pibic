@@ -24,16 +24,16 @@ class Pomodoro
 {
 public:
 	Pomodoro();
-	Pomodoro(std::string studyMusicF, std::string restMusicF, std::string alarmF);
+	Pomodoro(LPCTSTR studyMusicF, LPCTSTR restMusicF, LPCTSTR alarmF);
 	~Pomodoro();
 
 	void Run();
 	char GetInput();
 	
 private:
-	std::string studyMusicF;
-	std::string restMusicF;
-	std::string alarmF;
+	LPCSTR studyMusicF;
+	LPCSTR restMusicF;
+	LPCSTR alarmF;
 	Timer timer;
 	//std::thread input;
 };
