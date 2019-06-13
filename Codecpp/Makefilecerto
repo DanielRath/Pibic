@@ -1,0 +1,20 @@
+
+#Compiler
+CC = g++
+CFLAGS = -I include -lwinmm
+
+#Directory of needed files
+INC_PATH = include
+SRC_PATH = src
+
+#Files needed
+INC_FILES = $(wildcard $(INC_PATH)/*.h)
+SRC_FILES = $(wildcard $(SRC_PATH)/*.cpp)
+
+
+#Executable name
+EXEC = Main
+
+
+$(EXEC): $(SRC_FILES) $(INC_FILES)
+	$(CC) -o $(EXEC) $< $(CFLAGS)
