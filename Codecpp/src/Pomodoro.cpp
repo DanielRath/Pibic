@@ -27,24 +27,50 @@ Pomodoro::~Pomodoro(){
 
 
 void Pomodoro::Run(){
-	//std::thread input (&Pomodoro::GetInput,this);
-	//std::string teste;
+	//Char to receive stop command
+	char stop = ' ';
 	
-	PlaySound (TEXT (ALARM), NULL, SND_ALIAS|SND_LOOP|SND_ASYNC);
-	timer.Restart();
-	
-
-	//std::cin>>teste;
-	//getline(std::cin, teste);
-	//std::cout<<"teste foi "<<teste<<std::endl;
 	while(TRUE){
-		timer.Update();
-		if(timer.GetTime()>=5000){
-			std::thread input(&Pomodoro::GetInput,this);
-			std::cout<<"Foram 5 segs"<<std::endl;
-			PlaySound (TEXT (ALARM), NULL, SND_ALIAS|SND_LOOP|SND_ASYNC|SND_NOSTOP);
-			timer.Restart();
+		//Study time
+		cout<<"Hora de estudar"<<endl;
+		PlaySound (TEXT(STUDY_MUSIC), NULL, SND_ALIAS|SND_LOOP|SND_ASYNC);
+		timer.Restart();
+		while(timer.GetTime() < STUDY_TIME){
+			timer.Update();
 		}
+		cout<<"Fim do tempo de estudo"<<endl;
+
+
+		//Alarm to stop study time
+		PlaySound (TEXT (ALARM), NULL, SND_ALIAS|SND_LOOP|SND_ASYNC);
+		cout<<"Escreva 'p' para parar o alarme e comecar o tempo de descanco"<<endl;
+		cin>>stop;
+		while(stop =! 'p'){
+			cin>>stop;
+		}
+		stop = ' ';
+
+
+		//Rest time
+		cout<<"Hora de descancar"<<endl;
+		PlaySound (TEXT(REST_MUSIC), NULL, SND_ALIAS|SND_LOOP|SND_ASYNC);
+		timer.Restart();
+		while(timer.GetTime() < REST_TIME){
+			timer.Update();
+		}
+		cout<<"Fim do tempo de descanco"<<endl;
+
+
+		//Alarm to stop resting time
+		PlaySound (TEXT (ALARM), NULL, SND_ALIAS|SND_LOOP|SND_ASYNC);
+		cout<<"Escreva 'p' para parar o alarme e comecar o tempo de estudo"<<endl;
+		cin>>stop;
+		while(stop =! 'p'){
+			cin>>stop;
+		}
+		stop = ' ';
+
+
 	}
 }
 

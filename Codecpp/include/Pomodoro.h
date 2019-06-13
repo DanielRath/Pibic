@@ -10,10 +10,15 @@
 #include "Timer.h"
 
 
-#define STUDY_MUSIC "assets/boom.wav"
-#define REST_MUSIC "assets/boom.wav"
+#define STUDY_MUSIC "assets/Canon.wav"
+#define REST_MUSIC "assets/Canon.wav"
+#define BOOM_SND "assets/boom.wav"
 #define ALARM "assets/analog-watch-alarm_daniel-simion.wav"
 
+#define STUDY_TIME 10*1000
+#define REST_TIME 5*1000
+
+using namespace std;
 
 class Pomodoro
 {
