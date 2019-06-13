@@ -6,3 +6,9 @@ Code/AdaptiveMusic/obj/
 *.exe
 
 Code/obj/
+
+Codecpp/bin/
+
+Codecpp/dep/
+
+*.o
