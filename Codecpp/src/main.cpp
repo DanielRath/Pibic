@@ -3,11 +3,27 @@
 #include <iostream>
 
 #include "Pomodoro.h" 
+#include "InputManager.h"
+#include <thread>
+
+using namespace std;
+
 
 int main(int argc, char **argv)
 {
-    //PlaySound (TEXT ("assets/boom.wav"), NULL, SND_ALIAS);
-    Pomodoro pomo = Pomodoro();
-    pomo.Run();
+
+	
+	InputManager input;
+	input.Start();
+	string cinp = input.GetCurrentInput();
+	while(cinp != QUIT_REQUESTED){
+		if(cinp == ""){
+			//cout<<"tem nada aqui nao"<<endl;
+		}
+		else{
+			cout<<"Lendo na main: "<<cinp<<endl;
+		}
+		cinp = input.GetCurrentInput();
+	}
     return 0;
 }
