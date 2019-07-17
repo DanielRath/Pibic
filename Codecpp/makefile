@@ -19,7 +19,7 @@ CPP_FILES = $(wildcard $(SRC_PATH)/*.cpp)
 OBJ_FILES = $(addprefix $(BIN_PATH)/,$(notdir $(CPP_FILES:.cpp=.o)))
 DEP_FILES = $(wildcard $(DEP_PATH)/*.d)
 
-EXEC = GAME
+EXEC = AdaptiveMusic
 
 ifeq ($(OS),Windows_NT)
 
@@ -32,7 +32,7 @@ SDL_PATH = C:\SDL2-2.0.9\x86_64-w64-mingw32
 
 DIRECTIVES += -I $(SDL_PATH)\include
 
-LIBS = -L $(SDL_PATH)\lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -lm
+LIBS = -L $(SDL_PATH)\lib -lmingw32 -lm
 
 EXEC := $(EXEC).exe
 

@@ -12,3 +12,15 @@ Codecpp/bin/
 Codecpp/dep/
 
 *.o
+
+Codecpp/connected
+
+Codecpp/errors
+
+Codecpp/handler
+
+Codecpp/handler\)
+
+Codecpp/status\)
+
+Codecpp/status\.cbInQue
