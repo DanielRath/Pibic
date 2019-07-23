@@ -22,13 +22,13 @@ public:
 
 	float GetGSR();
 	float GetBPM();
-	float GetHStr();
+	//float GetHStr();
 
 
 private:
 	float gsrReading;
 	float bpm;
-	float heartStr;
+	//float heartStr;
 
 	SerialPort *port;
 };

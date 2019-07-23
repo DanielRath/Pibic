@@ -7,6 +7,7 @@
 #include <thread>
 #include "SerialPort.h"
 #include "SerialManager.h"
+#include "koolplot.h"
 
 using namespace std;
 
@@ -23,7 +24,7 @@ int main(int argc, char **argv)
 		if(result == 0) cout<<"No data passed"<<endl;
 		else if(result == -1) cout<<"Data in wrong format"<<endl;
 		else{
-			cout<<"GSR: "<<sm.GetGSR()<<"; BPM: "<<sm.GetBPM()<<"; Strength: "<<sm.GetHStr()<<endl;
+			cout<<"GSR: "<<sm.GetGSR()<<"; BPM: "<<sm.GetBPM()<<endl;
 		}
 	}
 

@@ -65,9 +65,9 @@ int SerialManager::UpdateReadings(){
 				}
 
 				//Convert value in auxiliar buffer to float, and store it in the right atribute from this object
-				if(readingCounter==0) gsrReading = atof(auxBuffer);
-				else if(readingCounter==1) bpm = atof(auxBuffer);
-				else if(readingCounter==2) heartStr = atof(auxBuffer);
+				if(readingCounter==0) bpm = atof(auxBuffer);
+				else if(readingCounter==1) gsrReading = atof(auxBuffer);
+				//else if(readingCounter==2) heartStr = atof(auxBuffer);
 
 				//Update counter and marker
 				readingCounter++;
@@ -75,7 +75,7 @@ int SerialManager::UpdateReadings(){
 			}
 		}
 
-		if(readingCounter != 3) return -1;
+		if(readingCounter != 2) return -1;
 
 		//If all the values were in the correct form, return 1
 		else return 1;
@@ -90,7 +90,8 @@ float SerialManager::GetGSR(){
 float SerialManager::GetBPM(){
 	return bpm;
 }
-
+/*
 float SerialManager::GetHStr(){
 	return heartStr;
 }
+*/

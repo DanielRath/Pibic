@@ -2,19 +2,24 @@
 
 String comma = ",";
 String message;
+long startTime, endTime;
+
 
 void setup() {
   Serial.begin(9600);
-
+  pinMode(A0, INPUT);
 }
 
 void loop() {
-  for(int i=0;i<10;i++){
-    message = "acasf(";
-    message = message + i + comma + 2*i + comma + 3*i;
-    message = message + ")asdwa";
-    Serial.println(message);
-    delay(500);
+  startTime=micros();
+  while(true){
+    endTime=micros();
+    if(endTime-startTime > 1000){
+      Serial.print("500,");
+      Serial.print(analogRead(A0));
+      Serial.println(",580");
+      startTime = micros();
+    }
   }
   
 }
