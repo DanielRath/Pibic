@@ -75,7 +75,7 @@ int SerialManager::UpdateReadings(){
 			}
 		}
 
-		if(readingCounter != 2) return -1;
+		if(readingCounter < 2) return -1;
 
 		//If all the values were in the correct form, return 1
 		else return 1;
